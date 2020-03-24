@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.10.2)
+
+project(qml)
+
+file(GLOB_RECURSE QML_FILES
+	${CMAKE_CURRENT_SOURCE_DIR}/*.qml
+	${CMAKE_CURRENT_SOURCE_DIR}/*.js)
+
+add_custom_target(${PROJECT_NAME}
+	SOURCES ${QML_FILES})
+
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} DESTINATION ${CMAKE_BINARY_DIR}/out/bin
+	FILES_MATCHING
+	PATTERN "*.qml"
+	PATTERN "qmldir"
+	PATTERN "*.js")
